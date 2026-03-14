@@ -182,6 +182,8 @@ Visit `http://localhost:8000/docs` for the interactive API documentation.
 
 📋 **Full testing guide:** [TESTING.md](TESTING.md)
 
+🏠 **Running locally without AWS?** → [LOCAL_SETUP.md](LOCAL_SETUP.md)
+
 ---
 
 ## 🐙 GitHub App Setup
