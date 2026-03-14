@@ -56,7 +56,8 @@ What makes it genuinely unique is the **multi-agent debate engine**. Instead of 
 
 ### Real PR reviewed automatically by CodeSentinel AI Bot:
 
-![CodeSentinel AI Review in action](assets/pr-review-comment.png)
+![CodeSentinel AI Review in action](https://github.com/Adarsh73111/Codesentinel-AI-Bot/blob/main/Screenshot%202026-03-15%20015219.png)
+![CodeSentinel AI Review in action](https://github.com/Adarsh73111/Codesentinel-AI-Bot/blob/main/Screenshot%202026-03-15%20022425.png)
 
 > The screenshot above shows **codesentinel-ai-bot** automatically posting a
 > full code review comment on PR #2 — including summary, overall score,
