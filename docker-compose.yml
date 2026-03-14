@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: codesentinel-app
+    ports:
+      - "8000:8000"
+    environment:
+      - GITHUB_WEBHOOK_SECRET=${GITHUB_WEBHOOK_SECRET}
+      - GITHUB_APP_ID=${GITHUB_APP_ID}
+      - GITHUB_CLIENT_ID=${GITHUB_CLIENT_ID}
+      - GITHUB_PRIVATE_KEY_PATH=/app/config/private-key.pem
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_URL=postgresql://codesentinel_user:codesentinel_pass@db:5432/codesentinel
+      - DEBUG=${DEBUG}
+    volumes:
+      - ./config:/app/config
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: always
+    networks:
+      - codesentinel-network
+
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: codesentinel-db
+    environment:
+      - POSTGRES_DB=codesentinel
+      - POSTGRES_USER=codesentinel_user
+      - POSTGRES_PASSWORD=codesentinel_pass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U codesentinel_user -d codesentinel"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: always
+    networks:
+      - codesentinel-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: codesentinel-redis
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: always
+    networks:
+      - codesentinel-network
+
+volumes:
+  postgres_data:
+
+networks:
+  codesentinel-network:
+    driver: bridge
