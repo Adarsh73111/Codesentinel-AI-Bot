@@ -184,6 +184,7 @@ Visit `http://localhost:8000/docs` for the interactive API documentation.
 
 🏠 **Running locally without AWS?** → [LOCAL_SETUP.md](LOCAL_SETUP.md)
 
+# 🐳 Docker Setup Guide — Run CodeSentinel AI Bot Locally
 ---
 
 ## 🐙 GitHub App Setup
